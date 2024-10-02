@@ -1,0 +1,172 @@
+Youtube Tutorial: 
+https://www.youtube.com/watch?v=t10QcFx7d5k
+
+Virtual Environment:
+    https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
+    pip install virtualenv
+    python<version> -m venv <virtual-environment-name>
+    source env/bin/activate
+    pip freeze > requirements.txt
+
+
+Django:
+    pip install django
+    django-admin startproject <project-name>
+    python manage.py startapp <app-name>
+    python manage.py runserver
+
+    To create new migrations based on the changes you've made to your models:
+        python manage.py makemigrations
+        python manage.py migrate
+
+
+SSH Github:
+    https://codemy.com/git
+        $ git config --global user.name "Your Name"
+        $ git config --global user.email "you@youraddress.com"
+        $ git config --global push.default matching
+        $ git config --global alias.co checkout
+        $ git init
+        $ git add.
+        $ git commit -m "first commit"
+        $ git remote add origin https://github.com/yourusername/yourrepository.git
+        $ git push -u origin master
+        $ git status
+        $ git log
+        $ git diff 
+
+
+Create page:
+    Include the urls.py file from the app directory
+    * In Django you always need a thing(html file), a View and a URL
+    HTML file - Page content
+    Url path - path to the function in views.py
+    View path - create function to render page
+
+    Using Bootstrap:
+        (https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+        add to base.html: "<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">"
+
+    
+
+    If using Tailwind:
+        add the following to the manage.py file:
+            import os
+            def watch_tailwind():
+              os.system("./tailwindcss -i ./blissful_balance/static/css/input.css -o ./blissful_balance/static/css/output.css --watch")
+
+
+Create folder 'templates':
+    create a home.html file
+    Create a base.html file contains all the common elements
+
+    Add a navbar and footer files and include them in the base.html file as needed
+
+Registration:
+    Using the Django authentication system:
+        Login Users:
+            In views.py:
+                import 'from django.contrib.auth import login, authenticate, logout'
+                popup messages - import "from django.contrib import messages"
+            Create new views to handle login and logout
+            Then create a URL in urls.py file for each view
+            You can either have the login form on the home page or in its own html file:
+                Create a login.html file and add the form in there:
+                    extend base.html
+                    Add load static
+                    block content
+                        Form in here
+                    endblock
+                Create a View and URL
+
+            Messages:
+                Add 'from django.contrib import messages' to the views.py file
+                Add the messages yo want for each view function
+                Add the message interation in the bas.html file:
+                        '{% if messages %}
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        {% endif %}'
+                            Can also add the template from bootstrap site like I did in the base.html file          
+            
+            Registration Form from Django:
+                Create a forms.py file            
+                    form for Registration
+                    Add to webpage:
+                        In views.py file import the SignUpForm            
+                        Edit registration view
+                        In the registration.html file add "{{ form.as_p }}"
+
+Create sqlite DB as temp functionality:
+    In Settingss.py:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+
+    Can go to the url http://127.0.0.1:8000/admin to see the admin page for DB information
+        
+Create a super user:
+    python manage.py createsuperuser
+
+Database Models:
+    In the models.py:
+        Create a Class for the data/fields we want to manage
+           python manage.py makemigrations
+            python manage.py migrate
+        Go to admin.py:
+            import the model
+            Register the model - can login into the admin panel and see the records model there
+
+View Records:
+  Import the Record model from models.py
+  In home:
+    Add the Record model to the view
+    Add the Record model to the context
+    In the home.html file:
+      Add the Record model to the context
+        * reason why only the first and last names are displayed is because 
+          the __str__ method is called on the model and only the first and 
+          last names are returned
+        Add default data for content by using templates from Bootsrap.
+
+        Bootstrap Table:
+          Get a table template from bootstrap
+    
+  Functionality to the table:
+    Make some data in the table clickable  - once clicked display the record info on a sparate page:
+      Create a path in urls.py - "record"
+      Create a view function - "customer_record"
+      Create a record.html file - Django 3 step process (path, view, page)
+    Add an href tag on the record either on a specific entry or row in home.html
+      <a href="{% url 'record' record.id %}">{{record.id}}</a> - this is a link on the ID - takes you to record.html page
+      In record.html:
+        Add the record data to the page - customer_record - function name in view.py
+        Can use templates from Bootsrap to style the page
+
+Delete Records:
+  Create a path in urls.py - "delete_record"
+  Create a view function - "delete_record"
+  Update button in the record.html file
+
+Adding Records:
+  Create a path in urls.py - "add_record"
+  Create a view function - "add_record"
+  Create a add_record.html file - Django 3 step process (path, view, page)
+  Add a class in the forms.py file so that the form fields are displayed
+  Update the add_record view
+  make sure you add '.forms import SignUpForm, RecordForm' in the views.py file
+
+Update Records:
+  Create a path in urls.py - "update_record"
+  Create a view function - "update_record"
+  Create a update_record.html file - Django 3 step process (path, view, page)
+  Update button in the record.html file - remember to add the 'customer_record.id' to specify the primary key
+  
+
+
+
+
