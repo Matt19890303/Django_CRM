@@ -8,8 +8,7 @@ Virtual Environment:
     source env/bin/activate
     pip freeze > requirements.txt
 
-
-Django:
+Django Commands:
     pip install django
     django-admin startproject <project-name>
     python manage.py startapp <app-name>
@@ -19,6 +18,9 @@ Django:
         python manage.py makemigrations
         python manage.py migrate
 
+    To rest DB schema:
+        If the 'dynamic_fields' field is not supposed to be in your model, you might need to remove it from your database schema. You can do this by creating a new migration to remove the field:
+        python manage.py makemigrations website --name remove_dynamic_fields
 
 SSH Github:
     https://codemy.com/git
@@ -34,7 +36,6 @@ SSH Github:
         $ git status
         $ git log
         $ git diff 
-
 
 Create page:
     Include the urls.py file from the app directory
@@ -54,7 +55,6 @@ Create page:
             import os
             def watch_tailwind():
               os.system("./tailwindcss -i ./blissful_balance/static/css/input.css -o ./blissful_balance/static/css/output.css --watch")
-
 
 Create folder 'templates':
     create a home.html file
@@ -147,6 +147,12 @@ View Records:
         Add the record data to the page - customer_record - function name in view.py
         Can use templates from Bootsrap to style the page
 
+Searching for a Record:
+    First, add a search form to your home.html template
+    Then, modify your home view in views.py to handle the search
+        This implementation allows users to search across multiple fields (first name, last name, email, phone, address, city, state, and zipcode) using a single search bar. The search is case-insensitive and will match partial strings.
+        Remember to import the necessary modules and ensure your Record model is properly imported in your views.py file.
+        
 Delete Records:
   Create a path in urls.py - "delete_record"
   Create a view function - "delete_record"
@@ -166,7 +172,3 @@ Update Records:
   Create a update_record.html file - Django 3 step process (path, view, page)
   Update button in the record.html file - remember to add the 'customer_record.id' to specify the primary key
   
-
-
-
-

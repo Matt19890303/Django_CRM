@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # This is the Data(fields) we want to add to our CRM
 class Record(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     # Date when record was created
     created_at = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=50)
@@ -12,7 +14,6 @@ class Record(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     zipcode = models.CharField(max_length=20)
-
 
 # What we want to show on the screen when we access these records
 # if you call one of these records it will return the first name and last name

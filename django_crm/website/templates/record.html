@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class="card" style="width: 18rem;">
+<div class="container d-flex flex-column align-items-center">
+  <div class="card" style="width: 18rem;">
     <div class="card-header">
       Customer Record
     </div>
@@ -16,12 +16,16 @@
       <div class="list-group-item">{{customer_record.zipcode}}</div>
       <div class="list-group-item">{{customer_record.created_at}}</div>
     </ul>
-</div>
+  </div>
 
-<br/>
-<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
-<a href="{% url 'update_record' customer_record.id %}" class="btn btn-success">Edit</a>
-<a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
+  <br/>
+  <div>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    <a href="{% url 'update_record' customer_record.id %}" class="btn btn-success">Edit</a>
+    <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
+  </div>
+
+</div>
   
 {% endblock %}
 

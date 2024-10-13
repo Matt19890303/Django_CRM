@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Add new member</h3>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="text" name="first_name" placeholder="First Name">
+    <input type="text" name="last_name" placeholder="Last Name">
+    <input type="email" name="email" placeholder="Email">
+    <label>
+        <input type="checkbox" name="is_superuser"> Is Superuser
+    </label>
+    <button type="submit">Add User</button>
+    <p><a href="{% url 'staff_members' %}" class="btn btn-secondary">Back</a></p>
+</form>
+  
+{% endblock %}
+
+

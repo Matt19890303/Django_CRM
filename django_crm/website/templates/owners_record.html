@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- <div class="container d-flex flex-column align-items-center">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      Staff Members
+    </div>
+    <ul class="list-group list-group-flush">
+      <div class="list-group-item">{{owner_record.username}}</div>
+      <div class="list-group-item">{{owner_record.first_name}} {{owner_record.last_name}}</div>
+      <div class="list-group-item">{{owner_record.email}}</div>
+      <div class="list-group-item">{{owner_record.is_superuser }}</div>
+    </ul>
+  </div>
+
+  <br/>
+  <div>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    <a href="{% url 'home' %}" class="btn btn-success">Edit</a>
+    <a href="{% url 'home' %}" class="btn btn-danger">Delete</a>
+  </div>
+</div> -->
+
+<div class="card">
+  <div class="card-header">
+    <h3>User Details</h3>
+  </div>
+  <div class="card-body">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>First Name:</strong> {{ user.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Admin permission:</strong> {{ user.is_superuser }}</p>
+  </div>
+  <br/>
+  <div>
+    <a href="{% url 'staff_members' %}" class="btn btn-secondary">Back</a>
+    <a href="{% url 'update_owner' user_id=user.id %}" class="btn btn-success">Edit</a>
+    <a href="{% url 'home' %}" class="btn btn-danger">Delete</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <div class="d-flex flex-column align-items-center">
+    <h1>Staff Members</h1>
+    
+    <!-- Add this search form -->
+    <form method="GET" action="{% url 'staff_members' %}" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="sm" class="form-control" placeholder="Search records...">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+    </form>
+    
+    <!-- Table with the record content -->
+    <table class="table table-dark table-hover table-bordered m-o">
+    <!-- Colomns -->
+    <thead>
+        <tr>
+          <th></th>
+          <th>ID</th> 
+          <th>Username</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Admin permission</th>
+        </tr>
+    </thead>
+        
+    <!-- Table content -->
+        <!-- Matches the columns -->
+    <tbody>
+        {% for user in users %}
+        <tr>
+          <td><a href="{% url 'owner_record' user.id %}" class="text-reset text-decoration-none">open</a></td>
+          <td>{{ user.id }}</td> 
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.is_superuser }}</td>
+        </tr>
+        {% endfor %}
+    <tr class="add-record-row">
+        <td colspan="11" class="text-center">
+        <a href="{% url 'add_owner' %}" class="btn btn-success btn-sm">Add New Staff member</a>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+
+  <style>
+    th select {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    th select option {
+      background-color: white;
+      color: black;
+    }
+  </style>
+  
+
+{% endblock %}

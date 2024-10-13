@@ -18,3 +18,12 @@ class RecordForm(forms.ModelForm):
         fields = '__all__'  # This will include all fields from the Record model
         # Alternatively, you can specify only the fields you want to include:
         # fields = ('first_name', 'last_name', 'email', 'phone', 'address', 'city', 'state', 'zipcode')
+
+
+class UpdateOwnerForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email', 'is_superuser']
+        widgets = {
+            'is_superuser': forms.CheckboxInput(),
+        }
